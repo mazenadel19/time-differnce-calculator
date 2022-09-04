@@ -41,10 +41,7 @@ setInterval(() => {
 
   const DAYS =
     daysDifference > 0 ? Math.floor(daysDifference) : Math.ceil(daysDifference);
-  const HOURS =
-    daysDifference > 0
-      ? Math.ceil(hoursLeftOfTheDay)
-      : Math.floor(hoursLeftOfTheDay);
+  const HOURS = Math.floor(hoursLeftOfTheDay);
   const MINUITES = Math.floor(miniutesLeftOfTheHour);
   const SECONDS = Math.floor(secondsLeftOfTheMiniute);
 
