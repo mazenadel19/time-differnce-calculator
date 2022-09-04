@@ -36,17 +36,18 @@ setInterval(() => {
     "0" + miniutesLeftOfTheHour.toString().slice(minuteDotIdx);
   const secondsLeftOfTheMiniute = (60 * timeLeftOfTheMinute) % 60;
 
-  const DAYS = daysDifference.toFixed();
-  const HOURS = hoursLeftOfTheDay.toFixed(0);
-  const MINUITES = miniutesLeftOfTheHour.toFixed(0);
-  const SECONDS = secondsLeftOfTheMiniute.toFixed(0);
+  const DAYS =
+    daysDifference > 0 ? Math.floor(daysDifference) : Math.ceil(daysDifference);
+  const HOURS = Math.floor(hoursLeftOfTheDay);
+  const MINUITES = Math.floor(miniutesLeftOfTheHour);
+  const SECONDS = Math.floor(secondsLeftOfTheMiniute);
 
-  h1.innerHTML = `<span class='time ${DAYS > 0 ? "" : "ahead"}'>
+  h1.innerHTML = `<span class='time ${daysDifference > 0 ? "" : "ahead"}'>
   ${Math.abs(DAYS)} day${addS(DAYS)} ${HOURS} hour${addS(HOURS)}<br/> 
   ${MINUITES} miniute${addS(MINUITES)} and ${SECONDS} second${addS(
     SECONDS
   )}</span><br/>
-  ${DAYS >= 0 ? "left till" : "ahead of"}<br/>
+  ${daysDifference > 0 ? "left till" : "ahead of"}<br/>
   <span class="goal">${GOAL_DATE}</span>`;
   main.appendChild(h1);
 }, 1000);
