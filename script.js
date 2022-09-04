@@ -15,6 +15,9 @@ function goalDateFormat(date = goal) {
 
 setInterval(() => {
   const inputValue = !!date.value && new Date(date.value);
+  var timeOffsetInMS = inputValue && inputValue.getTimezoneOffset() * 60000;
+  inputValue && inputValue.setTime(inputValue.getTime() + timeOffsetInMS);
+
   const GOAL_DATE =
     (inputValue && goalDateFormat(inputValue)) || goalDateFormat();
 
@@ -40,8 +43,8 @@ setInterval(() => {
     daysDifference > 0 ? Math.floor(daysDifference) : Math.ceil(daysDifference);
   const HOURS =
     daysDifference > 0
-      ? Math.floor(hoursLeftOfTheDay)
-      : Math.ceil(hoursLeftOfTheDay);
+      ? Math.ceil(hoursLeftOfTheDay)
+      : Math.floor(hoursLeftOfTheDay);
   const MINUITES = Math.floor(miniutesLeftOfTheHour);
   const SECONDS = Math.floor(secondsLeftOfTheMiniute);
 
